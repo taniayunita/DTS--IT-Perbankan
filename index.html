@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperatur Conversion</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    
+
+</head>
+<body>
+    <div class="container card">
+        <div class="text-center mb-3 mt-2">
+            <h3> Temperature Conversion</h3>
+        </div>
+        <form>
+
+          <div class="row">
+            <div class="col order-last">
+              <div class="form-group">
+                <select class="form-select" name="from" id="from" onchange="select()">
+                  <option value="fah" >Fahrenheit</option>
+                  <option value="cel">Celsius</option>
+                  <option value="rea">Reamur</option>
+                </select>
+              </div>
+            </div>
+            to
+            <div class="col order-first">
+              <div class="form-group">
+                <select class="form-select" name="to" id="to" onchange="select()">
+                  <option value="fah" >Fahrenheit</option>
+                  <option value="cel">Celsius</option>
+                  <option value="rea">Reamur</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          
+         
+          
+          
+            <div class="mb-3 mt-3">
+              <label class="mb-1" for="inputTemperature">Temperature</label>
+              <input 
+                type="number" 
+                class="form-control" 
+                id="inputTemperature"  
+                placeholder="type the number"
+                onkeypress="validate(event)"
+                onkeyup="conv()">
+            </div>
+            <div> 
+                <h6>Result</h6>
+            </div>
+            <div class="mb-3">
+            
+              <input class="form-control" id="result" type="number" placeholder="result" disabled>
+            </div>
+            
+           
+          </form>
+    </div>
+
+    <div class="container card">
+      <div class="text-center mt-2">
+          <h3> Change the Background Color</h3>
+      </div>
+      <form>
+        
+        
+          
+          <div class="mb-3">
+            <label class="mb-1" for="inputColor">Color</label>
+            <input type="text" class="form-control" id="inputColor" placeholder="color" >
+          </div>
+          
+          <button type="submit" class="btn btn-primary mb-3" onclick="change()">Change</button>
+        </form>
+  </div>
+
+  
+
+    
+
+    
+
+ 
+  <script src="assets/scripts/script.js"></script>
+  <script>
+    
+   
+      function select() {
+        document.getElementById("inputTemperature").value = "";
+        document.getElementById("result").value = "";
+      }
+
+      const convert = new Convert();
+      function conv() {
+        if (document.getElementById("from").value == "cel") {
+          const res = convert.fromCelcius(
+            document.getElementById("to").value,
+            parseInt(document.getElementById("inputTemperature").value)
+          );
+          document.getElementById("result").value = res;
+        }
+        if (document.getElementById("from").value == "rea") {
+          const res = convert.fromReamur(
+            document.getElementById("to").value,
+            parseInt(document.getElementById("inputTemperature").value)
+          );
+          document.getElementById("result").value = res;
+        }
+        if (document.getElementById("from").value == "fah") {
+          const res = convert.fromFarenheit(
+            document.getElementById("to").value,
+            parseInt(document.getElementById("inputTemperature").value)
+          );
+          document.getElementById("result").value = res;
+        }
+      }
+
+      function change() {
+      document.body.style.backgroundColor =
+        document.getElementById("inputColor").value;
+    }
+  
+  </script>
+  
+ 
+</body>
+</html>
